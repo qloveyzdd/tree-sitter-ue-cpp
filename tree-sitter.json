@@ -1,0 +1,32 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
+  "grammars": [
+    {
+      "name": "ue_cpp",
+      "camelcase": "UECpp",
+      "scope": "source.ue-cpp",
+      "path": ".",
+      "file-types": [
+        "h",
+        "hpp",
+        "cc",
+        "cpp"
+      ]
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MIT",
+    "description": "C++ grammar extended with Unreal Engine declaration macros"
+  },
+  "bindings": {
+    "c": true,
+    "go": false,
+    "java": false,
+    "node": false,
+    "python": true,
+    "rust": false,
+    "swift": false,
+    "zig": false
+  }
+}

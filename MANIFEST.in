@@ -1,0 +1,6 @@
+include grammar.js
+include LICENSE-tree-sitter-cpp
+include package.json
+include tree-sitter.json
+recursive-include src *.c *.h *.json
+recursive-include bindings/python/tree_sitter_ue_cpp *.c *.pyd *.py *.pyi py.typed

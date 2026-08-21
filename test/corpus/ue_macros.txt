@@ -1,0 +1,83 @@
+==================
+Reflection and API macros
+==================
+
+UCLASS()
+class SAMPLE_API AActor
+{
+    GENERATED_BODY()
+
+    UPROPERTY(EditAnywhere)
+    int Count;
+
+    UFUNCTION(BlueprintCallable)
+    void Run();
+};
+
+---
+
+(translation_unit
+  (ue_macro_invocation
+    head: (ue_macro_head)
+    arguments: (ue_macro_argument_tail))
+  (class_specifier
+    (ue_api_macro)
+    name: (type_identifier)
+    body: (field_declaration_list
+      (ue_macro_invocation
+        head: (ue_macro_head)
+        arguments: (ue_macro_argument_tail))
+      (ue_macro_invocation
+        head: (ue_macro_head)
+        arguments: (ue_macro_argument_tail
+          (ue_macro_argument_fragment)))
+      (field_declaration
+        type: (primitive_type)
+        declarator: (field_identifier))
+      (ue_macro_invocation
+        head: (ue_macro_head)
+        arguments: (ue_macro_argument_tail
+          (ue_macro_argument_fragment)))
+      (field_declaration
+        type: (primitive_type)
+        declarator: (function_declarator
+          declarator: (field_identifier)
+          parameters: (parameter_list))))))
+
+==================
+Mixed-case declaration macro arguments
+==================
+
+class FOwner
+{
+    DECLARE_EVENT_OneParam(FOwner, FChangedEvent, int Value)
+    FChangedEvent OnChanged;
+};
+
+---
+
+(translation_unit
+  (class_specifier
+    name: (type_identifier)
+    body: (field_declaration_list
+      (ue_macro_invocation
+        head: (ue_macro_head)
+        arguments: (ue_macro_argument_tail
+          (ue_macro_argument_fragment)))
+      (field_declaration
+        type: (type_identifier)
+        declarator: (field_identifier)))))
+
+==================
+Module registration macro
+==================
+
+IMPLEMENT_MODULE(FMyModule, MyModule)
+
+---
+
+(translation_unit
+  (ue_macro_invocation
+    head: (ue_macro_head)
+    arguments: (ue_macro_argument_tail
+      (ue_macro_argument_fragment))))

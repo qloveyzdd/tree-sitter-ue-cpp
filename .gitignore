@@ -1,0 +1,30 @@
+# Node.js dependencies
+node_modules/
+
+# Python build and package output
+build/
+dist/
+*.egg-info/
+__pycache__/
+*.pyc
+*.pyo
+
+# Native build intermediates and debug symbols
+*.lib
+*.obj
+*.pdb
+
+# Test and tooling caches
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local virtual environments
+.venv/
+venv/
+
+# Editor and OS metadata
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
