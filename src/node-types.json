@@ -5533,6 +5533,14 @@
           {
             "type": "system_lib_string",
             "named": true
+          },
+          {
+            "type": "ue_generated_header_path",
+            "named": true
+          },
+          {
+            "type": "ue_inline_generated_cpp_path",
+            "named": true
           }
         ]
       }
@@ -6880,6 +6888,22 @@
     }
   },
   {
+    "type": "ue_inline_generated_cpp_path",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "ue_macro_argument_tail",
     "named": true,
     "fields": {},
@@ -7539,6 +7563,10 @@
     "named": false
   },
   {
+    "type": "UE_INLINE_GENERATED_CPP_BY_NAME",
+    "named": false
+  },
+  {
     "type": "UR\"",
     "named": false
   },
@@ -8109,6 +8137,10 @@
   },
   {
     "type": "ue_api_macro",
+    "named": true
+  },
+  {
+    "type": "ue_generated_header_path",
     "named": true
   },
   {

@@ -12,6 +12,32 @@ module.exports = grammar(CPP, {
   name: 'ue_cpp',
 
   rules: {
+    preproc_include: $ => seq(
+      uePreprocessor('include'),
+      field('path', choice(
+        $.ue_generated_header_path,
+        $.ue_inline_generated_cpp_path,
+        $.string_literal,
+        $.system_lib_string,
+        $.identifier,
+        alias($.preproc_call_expression, $.call_expression),
+      )),
+      token.immediate(/\r?\n/),
+    ),
+
+    ue_generated_header_path: _ => token(prec(2, seq(
+      '"',
+      /[^"\n]*\.generated\.h/,
+      '"',
+    ))),
+
+    ue_inline_generated_cpp_path: $ => seq(
+      'UE_INLINE_GENERATED_CPP_BY_NAME',
+      '(',
+      field('name', $.identifier),
+      ')',
+    ),
+
     _top_level_item: ($, original) => choice(
       original,
       $.ue_macro_invocation,
@@ -79,3 +105,7 @@ module.exports = grammar(CPP, {
     ue_macro_argument_fragment: _ => token(prec(-1, /[^()"']+/)),
   },
 });
+
+function uePreprocessor(command) {
+  return alias(new RegExp('#[ \\t]*' + command), '#' + command);
+}

@@ -259,7 +259,7 @@
           "type": "ALIAS",
           "content": {
             "type": "PATTERN",
-            "value": "#[ \t]*include"
+            "value": "#[ \\t]*include"
           },
           "named": false,
           "value": "#include"
@@ -270,6 +270,14 @@
           "content": {
             "type": "CHOICE",
             "members": [
+              {
+                "type": "SYMBOL",
+                "name": "ue_generated_header_path"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "ue_inline_generated_cpp_path"
+              },
               {
                 "type": "SYMBOL",
                 "name": "string_literal"
@@ -16976,6 +16984,55 @@
       },
       "named": true,
       "value": "namespace_identifier"
+    },
+    "ue_generated_header_path": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 2,
+        "content": {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "\""
+            },
+            {
+              "type": "PATTERN",
+              "value": "[^\"\\n]*\\.generated\\.h"
+            },
+            {
+              "type": "STRING",
+              "value": "\""
+            }
+          ]
+        }
+      }
+    },
+    "ue_inline_generated_cpp_path": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "UE_INLINE_GENERATED_CPP_BY_NAME"
+        },
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
     },
     "ue_api_macro": {
       "type": "TOKEN",

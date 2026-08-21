@@ -81,3 +81,23 @@ IMPLEMENT_MODULE(FMyModule, MyModule)
     head: (ue_macro_head)
     arguments: (ue_macro_argument_tail
       (ue_macro_argument_fragment))))
+
+==================
+Generated includes
+==================
+
+#include "SampleActor.generated.h"
+#include UE_INLINE_GENERATED_CPP_BY_NAME(SampleActor)
+#include "SampleActor.h"
+
+---
+
+(translation_unit
+  (preproc_include
+    path: (ue_generated_header_path))
+  (preproc_include
+    path: (ue_inline_generated_cpp_path
+      name: (identifier)))
+  (preproc_include
+    path: (string_literal
+      (string_content))))
