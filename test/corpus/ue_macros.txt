@@ -101,3 +101,59 @@ Generated includes
   (preproc_include
     path: (string_literal
       (string_content))))
+
+==================
+UE parameter annotations
+==================
+
+class AWorker
+{
+    void GetPayload(UPARAM(ref) int32& OutPayload);
+    void Trace(OUT TArray<FHitResult>& OutHits);
+    bool CanRun(OUT FGameplayTagContainer* Tags = nullptr) const;
+};
+
+---
+
+(translation_unit
+  (class_specifier
+    name: (type_identifier)
+    body: (field_declaration_list
+      (field_declaration
+        type: (primitive_type)
+        declarator: (function_declarator
+          declarator: (field_identifier)
+          parameters: (parameter_list
+            (parameter_declaration
+              (ue_parameter_macro
+                arguments: (ue_macro_parenthesized_group
+                  (ue_macro_argument_fragment)))
+              type: (type_identifier)
+              declarator: (reference_declarator
+                (identifier))))))
+      (field_declaration
+        type: (primitive_type)
+        declarator: (function_declarator
+          declarator: (field_identifier)
+          parameters: (parameter_list
+            (parameter_declaration
+              (ue_parameter_modifier)
+              type: (template_type
+                name: (type_identifier)
+                arguments: (template_argument_list
+                  (type_descriptor
+                    type: (type_identifier))))
+              declarator: (reference_declarator
+                (identifier))))))
+      (field_declaration
+        type: (primitive_type)
+        declarator: (function_declarator
+          declarator: (field_identifier)
+          parameters: (parameter_list
+            (optional_parameter_declaration
+              (ue_parameter_modifier)
+              type: (type_identifier)
+              declarator: (pointer_declarator
+                declarator: (identifier))
+              default_value: (null)))
+          (type_qualifier))))))

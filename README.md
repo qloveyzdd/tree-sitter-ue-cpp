@@ -1,6 +1,6 @@
 # tree-sitter-ue-cpp
 
-仓库内使用的 Tree-sitter C++ 派生 grammar，为 Unreal Engine 声明宏、`_API` 标记、生成头路径和内联生成源路径提供明确语法节点，同时保持其他表达式宏为标准 C++ 调用表达式。
+仓库内使用的 Tree-sitter C++ 派生 grammar，为 Unreal Engine 声明宏、`_API` 标记、`UPARAM(...)`、参数位置的 `IN` / `OUT` / `INOUT`、生成头路径和内联生成源路径提供明确语法节点，同时保持其他表达式宏为标准 C++ 调用表达式。
 
 更新 grammar 后执行：
 

@@ -4357,6 +4357,14 @@
         {
           "type": "ue_api_macro",
           "named": true
+        },
+        {
+          "type": "ue_parameter_macro",
+          "named": true
+        },
+        {
+          "type": "ue_parameter_modifier",
+          "named": true
         }
       ]
     }
@@ -4442,6 +4450,14 @@
         },
         {
           "type": "ue_api_macro",
+          "named": true
+        },
+        {
+          "type": "ue_parameter_macro",
+          "named": true
+        },
+        {
+          "type": "ue_parameter_modifier",
           "named": true
         }
       ]
@@ -6992,6 +7008,22 @@
     }
   },
   {
+    "type": "ue_parameter_macro",
+    "named": true,
+    "fields": {
+      "arguments": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "ue_macro_parenthesized_group",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "unary_expression",
     "named": true,
     "fields": {
@@ -7263,6 +7295,14 @@
         },
         {
           "type": "ue_api_macro",
+          "named": true
+        },
+        {
+          "type": "ue_parameter_macro",
+          "named": true
+        },
+        {
+          "type": "ue_parameter_modifier",
           "named": true
         }
       ]
@@ -7564,6 +7604,10 @@
   },
   {
     "type": "UE_INLINE_GENERATED_CPP_BY_NAME",
+    "named": false
+  },
+  {
+    "type": "UPARAM",
     "named": false
   },
   {
@@ -8149,6 +8193,10 @@
   },
   {
     "type": "ue_macro_head",
+    "named": true
+  },
+  {
+    "type": "ue_parameter_modifier",
     "named": true
   },
   {

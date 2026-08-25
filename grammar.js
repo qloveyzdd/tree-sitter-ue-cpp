@@ -64,7 +64,32 @@ module.exports = grammar(CPP, {
       $.ue_api_macro,
     ),
 
+    parameter_declaration: ($, original) => seq(
+      repeat(choice($.ue_parameter_macro, $.ue_parameter_modifier)),
+      original,
+    ),
+
+    optional_parameter_declaration: ($, original) => seq(
+      repeat(choice($.ue_parameter_macro, $.ue_parameter_modifier)),
+      original,
+    ),
+
+    variadic_parameter_declaration: ($, original) => seq(
+      repeat(choice($.ue_parameter_macro, $.ue_parameter_modifier)),
+      original,
+    ),
+
     ue_api_macro: _ => token(prec(2, /[A-Z][A-Z0-9_]*_API/)),
+
+    ue_parameter_macro: $ => seq(
+      'UPARAM',
+      field('arguments', $.ue_macro_parenthesized_group),
+    ),
+
+    // These UE macros expand away before C++ compilation. Model them only in
+    // parameter-declaration position so ordinary call arguments named OUT are
+    // left to the base C++ grammar.
+    ue_parameter_modifier: _ => token(prec(2, choice('IN', 'OUT', 'INOUT'))),
 
     ue_macro_invocation: $ => prec.right(seq(
       field('head', $.ue_macro_head),
