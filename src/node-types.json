@@ -5580,7 +5580,17 @@
   {
     "type": "pure_virtual_clause",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "ue_macro_invocation",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "qualified_identifier",
@@ -6920,7 +6930,7 @@
     }
   },
   {
-    "type": "ue_macro_argument_tail",
+    "type": "ue_macro_angle_group",
     "named": true,
     "fields": {},
     "children": {
@@ -6940,7 +6950,164 @@
           "named": true
         },
         {
+          "type": "ue_macro_angle_group",
+          "named": true
+        },
+        {
           "type": "ue_macro_argument_fragment",
+          "named": true
+        },
+        {
+          "type": "ue_macro_braced_group",
+          "named": true
+        },
+        {
+          "type": "ue_macro_bracketed_group",
+          "named": true
+        },
+        {
+          "type": "ue_macro_parenthesized_group",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ue_macro_argument",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "char_literal",
+          "named": true
+        },
+        {
+          "type": "raw_string_literal",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "ue_macro_angle_group",
+          "named": true
+        },
+        {
+          "type": "ue_macro_argument_fragment",
+          "named": true
+        },
+        {
+          "type": "ue_macro_braced_group",
+          "named": true
+        },
+        {
+          "type": "ue_macro_bracketed_group",
+          "named": true
+        },
+        {
+          "type": "ue_macro_parenthesized_group",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ue_macro_argument_tail",
+    "named": true,
+    "fields": {
+      "argument": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "ue_macro_argument",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "ue_macro_braced_group",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "char_literal",
+          "named": true
+        },
+        {
+          "type": "raw_string_literal",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "ue_macro_angle_group",
+          "named": true
+        },
+        {
+          "type": "ue_macro_argument_fragment",
+          "named": true
+        },
+        {
+          "type": "ue_macro_braced_group",
+          "named": true
+        },
+        {
+          "type": "ue_macro_bracketed_group",
+          "named": true
+        },
+        {
+          "type": "ue_macro_parenthesized_group",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ue_macro_bracketed_group",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "char_literal",
+          "named": true
+        },
+        {
+          "type": "raw_string_literal",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "ue_macro_angle_group",
+          "named": true
+        },
+        {
+          "type": "ue_macro_argument_fragment",
+          "named": true
+        },
+        {
+          "type": "ue_macro_braced_group",
+          "named": true
+        },
+        {
+          "type": "ue_macro_bracketed_group",
           "named": true
         },
         {
@@ -6997,7 +7164,19 @@
           "named": true
         },
         {
+          "type": "ue_macro_angle_group",
+          "named": true
+        },
+        {
           "type": "ue_macro_argument_fragment",
+          "named": true
+        },
+        {
+          "type": "ue_macro_braced_group",
+          "named": true
+        },
+        {
+          "type": "ue_macro_bracketed_group",
           "named": true
         },
         {
