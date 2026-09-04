@@ -40,6 +40,7 @@ module.exports = grammar(CPP, {
 
     _top_level_item: ($, original) => choice(
       original,
+      $.ue_gameplay_tag_macro,
       $.ue_macro_invocation,
     ),
 
@@ -50,7 +51,11 @@ module.exports = grammar(CPP, {
 
     declaration_list: $ => seq(
       '{',
-      repeat(choice($._block_item, $.ue_macro_invocation)),
+      repeat(choice(
+        $._block_item,
+        $.ue_gameplay_tag_macro,
+        $.ue_macro_invocation,
+      )),
       '}',
     ),
 
@@ -95,6 +100,20 @@ module.exports = grammar(CPP, {
     // parameter-declaration position so ordinary call arguments named OUT are
     // left to the base C++ grammar.
     ue_parameter_modifier: _ => token(prec(2, choice('IN', 'OUT', 'INOUT'))),
+
+    ue_gameplay_tag_macro: $ => prec.right(3, seq(
+      optional(field('api', $.ue_api_macro)),
+      field('head', $.ue_gameplay_tag_macro_head),
+      field('arguments', $.ue_macro_argument_tail),
+      optional(';'),
+    )),
+
+    ue_gameplay_tag_macro_head: _ => token(prec(3, choice(
+      /UE_DECLARE_GAMEPLAY_TAG_EXTERN\s*\(/,
+      /UE_DEFINE_GAMEPLAY_TAG_COMMENT\s*\(/,
+      /UE_DEFINE_GAMEPLAY_TAG_STATIC\s*\(/,
+      /UE_DEFINE_GAMEPLAY_TAG\s*\(/,
+    ))),
 
     ue_macro_invocation: $ => prec.right(seq(
       field('head', $.ue_macro_head),

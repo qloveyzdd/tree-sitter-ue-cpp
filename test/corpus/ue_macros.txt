@@ -47,6 +47,70 @@ class SAMPLE_API AActor
           parameters: (parameter_list))))))
 
 ==================
+Native GameplayTag macros
+==================
+
+namespace SampleTags
+{
+    SAMPLE_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(SharedTag);
+    UE_DECLARE_GAMEPLAY_TAG_EXTERN(HeaderOnlyTag);
+    UE_DEFINE_GAMEPLAY_TAG(SharedTag, "Sample.Shared");
+    UE_DEFINE_GAMEPLAY_TAG_COMMENT(CommentedTag, "Sample.Commented", "Comment");
+    UE_DEFINE_GAMEPLAY_TAG_STATIC(LocalTag, "Sample.Local");
+    int32 OrdinaryGlobal = 0;
+}
+
+---
+
+(translation_unit
+  (namespace_definition
+    name: (namespace_identifier)
+    body: (declaration_list
+      (ue_gameplay_tag_macro
+        api: (ue_api_macro)
+        head: (ue_gameplay_tag_macro_head)
+        arguments: (ue_macro_argument_tail
+          argument: (ue_macro_argument
+            (ue_macro_argument_fragment))))
+      (ue_gameplay_tag_macro
+        head: (ue_gameplay_tag_macro_head)
+        arguments: (ue_macro_argument_tail
+          argument: (ue_macro_argument
+            (ue_macro_argument_fragment))))
+      (ue_gameplay_tag_macro
+        head: (ue_gameplay_tag_macro_head)
+        arguments: (ue_macro_argument_tail
+          argument: (ue_macro_argument
+            (ue_macro_argument_fragment))
+          argument: (ue_macro_argument
+            (string_literal
+              (string_content)))))
+      (ue_gameplay_tag_macro
+        head: (ue_gameplay_tag_macro_head)
+        arguments: (ue_macro_argument_tail
+          argument: (ue_macro_argument
+            (ue_macro_argument_fragment))
+          argument: (ue_macro_argument
+            (string_literal
+              (string_content)))
+          argument: (ue_macro_argument
+            (string_literal
+              (string_content)))))
+      (ue_gameplay_tag_macro
+        head: (ue_gameplay_tag_macro_head)
+        arguments: (ue_macro_argument_tail
+          argument: (ue_macro_argument
+            (ue_macro_argument_fragment))
+          argument: (ue_macro_argument
+            (string_literal
+              (string_content)))))
+      (declaration
+        type: (type_identifier)
+        declarator: (init_declarator
+          declarator: (identifier)
+          value: (number_literal))))))
+
+==================
 Mixed-case declaration macro arguments
 ==================
 

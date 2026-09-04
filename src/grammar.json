@@ -132,6 +132,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "ue_gameplay_tag_macro"
+        },
+        {
+          "type": "SYMBOL",
           "name": "ue_macro_invocation"
         }
       ]
@@ -3553,6 +3557,10 @@
               {
                 "type": "SYMBOL",
                 "name": "_block_item"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "ue_gameplay_tag_macro"
               },
               {
                 "type": "SYMBOL",
@@ -17153,6 +17161,87 @@
             {
               "type": "STRING",
               "value": "INOUT"
+            }
+          ]
+        }
+      }
+    },
+    "ue_gameplay_tag_macro": {
+      "type": "PREC_RIGHT",
+      "value": 3,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "FIELD",
+                "name": "api",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "ue_api_macro"
+                }
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
+            "type": "FIELD",
+            "name": "head",
+            "content": {
+              "type": "SYMBOL",
+              "name": "ue_gameplay_tag_macro_head"
+            }
+          },
+          {
+            "type": "FIELD",
+            "name": "arguments",
+            "content": {
+              "type": "SYMBOL",
+              "name": "ue_macro_argument_tail"
+            }
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "STRING",
+                "value": ";"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "ue_gameplay_tag_macro_head": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 3,
+        "content": {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "PATTERN",
+              "value": "UE_DECLARE_GAMEPLAY_TAG_EXTERN\\s*\\("
+            },
+            {
+              "type": "PATTERN",
+              "value": "UE_DEFINE_GAMEPLAY_TAG_COMMENT\\s*\\("
+            },
+            {
+              "type": "PATTERN",
+              "value": "UE_DEFINE_GAMEPLAY_TAG_STATIC\\s*\\("
+            },
+            {
+              "type": "PATTERN",
+              "value": "UE_DEFINE_GAMEPLAY_TAG\\s*\\("
             }
           ]
         }

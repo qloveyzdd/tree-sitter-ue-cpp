@@ -1,6 +1,6 @@
 # tree-sitter-ue-cpp
 
-仓库内使用的 Tree-sitter C++ 派生 grammar，为 Unreal Engine 声明宏、`_API` 标记、`UPARAM(...)`、参数位置的 `IN` / `OUT` / `INOUT`、生成头路径和内联生成源路径提供明确语法节点，同时保持其他表达式宏为标准 C++ 调用表达式。
+仓库内使用的 Tree-sitter C++ 派生 grammar，为 Unreal Engine 声明宏、原生 GameplayTag 宏、`_API` 标记、`UPARAM(...)`、参数位置的 `IN` / `OUT` / `INOUT`、生成头路径和内联生成源路径提供明确语法节点，同时保持其他表达式宏为标准 C++ 调用表达式。原生 GameplayTag 的声明与三种定义宏统一输出为 `ue_gameplay_tag_macro`，包括带模块 `_API` 前缀的声明。
 
 更新 grammar 后执行：
 

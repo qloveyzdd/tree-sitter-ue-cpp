@@ -2189,6 +2189,10 @@
           "named": true
         },
         {
+          "type": "ue_gameplay_tag_macro",
+          "named": true
+        },
+        {
           "type": "ue_macro_invocation",
           "named": true
         },
@@ -6740,6 +6744,10 @@
           "named": true
         },
         {
+          "type": "ue_gameplay_tag_macro",
+          "named": true
+        },
+        {
           "type": "ue_macro_invocation",
           "named": true
         },
@@ -6911,6 +6919,42 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "ue_gameplay_tag_macro",
+    "named": true,
+    "fields": {
+      "api": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "ue_api_macro",
+            "named": true
+          }
+        ]
+      },
+      "arguments": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "ue_macro_argument_tail",
+            "named": true
+          }
+        ]
+      },
+      "head": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "ue_gameplay_tag_macro_head",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -8360,6 +8404,10 @@
   },
   {
     "type": "ue_api_macro",
+    "named": true
+  },
+  {
+    "type": "ue_gameplay_tag_macro_head",
     "named": true
   },
   {
