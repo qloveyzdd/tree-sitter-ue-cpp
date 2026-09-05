@@ -13,9 +13,34 @@ module.exports = grammar(CPP, {
 
   conflicts: ($, original) => original.concat([
     [$.argument_list, $.ue_out_argument_list],
+    [$.preproc_if, $.ue_preproc_if_line],
   ]),
 
   rules: {
+    preproc_if: $ => prec(0, seq(
+      alias(/#[ \t]*if/, '#if'),
+      field('condition', $._preproc_expression),
+      '\n',
+      choice(
+        seq(
+          repeat($._block_item),
+          field('alternative', optional(choice(
+            $.preproc_else,
+            $.preproc_elif,
+            $.preproc_elifdef,
+          ))),
+          alias(/#[ \t]*endif/, '#endif'),
+        ),
+        seq(
+          repeat(field('opening_directive', $.ue_preproc_if_line)),
+          field('conditional_statement', alias(
+            $._ue_if_closed_after_preproc,
+            $.if_statement,
+          )),
+        ),
+      ),
+    )),
+
     preproc_include: $ => seq(
       uePreprocessor('include'),
       field('path', choice(
@@ -27,6 +52,17 @@ module.exports = grammar(CPP, {
         alias($.preproc_call_expression, $.call_expression),
       )),
       token.immediate(/\r?\n/),
+    ),
+
+    preproc_call: $ => seq(
+      field('directive', $.preproc_directive),
+      choice(
+        seq(
+          field('argument', $.preproc_arg),
+          optional(token.immediate(/\r?\n/)),
+        ),
+        token.immediate(/\r?\n/),
+      ),
     ),
 
     ue_generated_header_path: _ => token(prec(2, seq(
@@ -45,12 +81,14 @@ module.exports = grammar(CPP, {
     _top_level_item: ($, original) => choice(
       original,
       $.ue_gameplay_tag_macro,
+      $.ue_test_declaration_macro,
       $.ue_exported_macro_invocation,
       $.ue_macro_invocation,
     ),
 
     _field_declaration_list_item: ($, original) => choice(
       original,
+      $.ue_slate_declaration_macro,
       $.ue_exported_macro_invocation,
       $.ue_macro_invocation,
     ),
@@ -58,6 +96,8 @@ module.exports = grammar(CPP, {
     _block_item: ($, original) => choice(
       original,
       $.ue_statement_macro,
+      $.ue_runtime_statement_macro,
+      $.ue_test_declaration_macro,
       $.ue_macro_invocation,
     ),
 
@@ -165,6 +205,27 @@ module.exports = grammar(CPP, {
       )),
     ),
 
+    // A common UE configuration pattern closes one or more #if regions
+    // between `else` and its body. Model the whole construct as one aliased
+    // if_statement so the alternative remains structurally attached.
+    _ue_if_closed_after_preproc: $ => prec.dynamic(10, prec.right(4, seq(
+      'if',
+      optional('constexpr'),
+      field('condition', $.condition_clause),
+      field('consequence', $.statement),
+      'else',
+      repeat1(field('closing_directive', $.ue_preproc_endif_line)),
+      field('alternative', $.statement),
+    ))),
+
+    ue_preproc_if_line: $ => seq(
+      alias(/#[ \t]*if/, '#if'),
+      field('condition', $._preproc_expression),
+      '\n',
+    ),
+
+    ue_preproc_endif_line: _ => alias(/#[ \t]*endif/, '#endif'),
+
     ue_api_macro: _ => token(prec(2, /[A-Z][A-Z0-9_]*_API/)),
 
     ue_declaration_modifier: _ => token(prec(2, choice(
@@ -174,6 +235,50 @@ module.exports = grammar(CPP, {
     ))),
 
     ue_statement_macro: _ => token(prec(2, /PRAGMA_[A-Z0-9_]+/)),
+
+    // These macros expand to complete statements in UE and are intentionally
+    // invoked without a source semicolon at some call sites.
+    ue_runtime_statement_macro: $ => prec.right(3, seq(
+      field('invocation', alias(
+        $._ue_runtime_statement_macro_call,
+        $.call_expression,
+      )),
+      optional(';'),
+    )),
+
+    _ue_runtime_statement_macro_call: $ => seq(
+      field('function', alias($.ue_runtime_statement_macro_head, $.identifier)),
+      field('arguments', $.argument_list),
+    ),
+
+    ue_runtime_statement_macro_head: _ => token(prec(3,
+      /(?:check(?:f|Slow|fSlow)?|DOREPLIFETIME(?:_[A-Za-z0-9_]+)*)/
+    )),
+
+    // UE automation helpers expand to class/spec declaration boundaries, so
+    // their invocations are complete top-level items without source semicolons.
+    ue_test_declaration_macro: $ => prec.right(3, seq(
+      field('head', $.ue_test_declaration_macro_head),
+      field('arguments', $.argument_list),
+      optional(';'),
+    )),
+
+    ue_test_declaration_macro_head: _ => token(prec(3,
+      /(?:ACTOR_ANIMATION_(?:NETWORK_)?TEST(?:_WITH_FLAGS)?|TEST_CLASS_WITH_FLAGS|BEGIN_DEFINE_SPEC|END_DEFINE_SPEC)/
+    )),
+
+    // Slate's argument DSL emits class members and deliberately omits source
+    // semicolons. SLATE_BEGIN_ARGS is excluded because it has constructor-like
+    // initializer/body syntax that the base C++ grammar already models.
+    ue_slate_declaration_macro: $ => prec.right(3, seq(
+      field('head', $.ue_slate_declaration_macro_head),
+      field('arguments', $.ue_macro_argument_tail),
+      optional(';'),
+    )),
+
+    ue_slate_declaration_macro_head: _ => token(prec(3,
+      /(?:SLATE_END_ARGS|SLATE_ARGUMENT|SLATE_ATTRIBUTE|SLATE_STYLE_ARGUMENT|SLATE_SLOT_ARGUMENT|SLATE_SLOT_BEGIN_ARGS|SLATE_SLOT_END_ARGS)\s*\(/
+    )),
 
     ue_parameter_macro: $ => seq(
       'UPARAM',

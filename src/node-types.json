@@ -1710,7 +1710,15 @@
           "named": true
         },
         {
+          "type": "ue_runtime_statement_macro",
+          "named": true
+        },
+        {
           "type": "ue_statement_macro",
+          "named": true
+        },
+        {
+          "type": "ue_test_declaration_macro",
           "named": true
         },
         {
@@ -2217,7 +2225,15 @@
           "named": true
         },
         {
+          "type": "ue_runtime_statement_macro",
+          "named": true
+        },
+        {
           "type": "ue_statement_macro",
+          "named": true
+        },
+        {
+          "type": "ue_test_declaration_macro",
           "named": true
         },
         {
@@ -2691,6 +2707,10 @@
         },
         {
           "type": "ue_macro_invocation",
+          "named": true
+        },
+        {
+          "type": "ue_slate_declaration_macro",
           "named": true
         },
         {
@@ -3670,6 +3690,20 @@
         "types": [
           {
             "type": "else_clause",
+            "named": true
+          },
+          {
+            "type": "statement",
+            "named": true
+          }
+        ]
+      },
+      "closing_directive": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "ue_preproc_endif_line",
             "named": true
           }
         ]
@@ -5017,7 +5051,19 @@
           "named": true
         },
         {
+          "type": "ue_runtime_statement_macro",
+          "named": true
+        },
+        {
+          "type": "ue_slate_declaration_macro",
+          "named": true
+        },
+        {
           "type": "ue_statement_macro",
+          "named": true
+        },
+        {
+          "type": "ue_test_declaration_macro",
           "named": true
         },
         {
@@ -5165,7 +5211,19 @@
           "named": true
         },
         {
+          "type": "ue_runtime_statement_macro",
+          "named": true
+        },
+        {
+          "type": "ue_slate_declaration_macro",
+          "named": true
+        },
+        {
           "type": "ue_statement_macro",
+          "named": true
+        },
+        {
+          "type": "ue_test_declaration_macro",
           "named": true
         },
         {
@@ -5284,7 +5342,19 @@
           "named": true
         },
         {
+          "type": "ue_runtime_statement_macro",
+          "named": true
+        },
+        {
+          "type": "ue_slate_declaration_macro",
+          "named": true
+        },
+        {
           "type": "ue_statement_macro",
+          "named": true
+        },
+        {
+          "type": "ue_test_declaration_macro",
           "named": true
         },
         {
@@ -5386,6 +5456,26 @@
           },
           {
             "type": "unary_expression",
+            "named": true
+          }
+        ]
+      },
+      "conditional_statement": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "if_statement",
+            "named": true
+          }
+        ]
+      },
+      "opening_directive": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "ue_preproc_if_line",
             "named": true
           }
         ]
@@ -5496,7 +5586,19 @@
           "named": true
         },
         {
+          "type": "ue_runtime_statement_macro",
+          "named": true
+        },
+        {
+          "type": "ue_slate_declaration_macro",
+          "named": true
+        },
+        {
           "type": "ue_statement_macro",
+          "named": true
+        },
+        {
+          "type": "ue_test_declaration_macro",
           "named": true
         },
         {
@@ -5644,7 +5746,19 @@
           "named": true
         },
         {
+          "type": "ue_runtime_statement_macro",
+          "named": true
+        },
+        {
+          "type": "ue_slate_declaration_macro",
+          "named": true
+        },
+        {
           "type": "ue_statement_macro",
+          "named": true
+        },
+        {
+          "type": "ue_test_declaration_macro",
           "named": true
         },
         {
@@ -6888,6 +7002,10 @@
           "named": true
         },
         {
+          "type": "ue_test_declaration_macro",
+          "named": true
+        },
+        {
           "type": "using_declaration",
           "named": true
         },
@@ -7455,6 +7573,123 @@
         "types": [
           {
             "type": "ue_macro_parenthesized_group",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "ue_preproc_endif_line",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "ue_preproc_if_line",
+    "named": true,
+    "fields": {
+      "condition": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "call_expression",
+            "named": true
+          },
+          {
+            "type": "char_literal",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "number_literal",
+            "named": true
+          },
+          {
+            "type": "parenthesized_expression",
+            "named": true
+          },
+          {
+            "type": "preproc_defined",
+            "named": true
+          },
+          {
+            "type": "unary_expression",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "ue_runtime_statement_macro",
+    "named": true,
+    "fields": {
+      "invocation": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "call_expression",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "ue_slate_declaration_macro",
+    "named": true,
+    "fields": {
+      "arguments": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "ue_macro_argument_tail",
+            "named": true
+          }
+        ]
+      },
+      "head": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "ue_slate_declaration_macro_head",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "ue_test_declaration_macro",
+    "named": true,
+    "fields": {
+      "arguments": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "argument_list",
+            "named": true
+          }
+        ]
+      },
+      "head": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "ue_test_declaration_macro_head",
             "named": true
           }
         ]
@@ -8654,7 +8889,15 @@
     "named": true
   },
   {
+    "type": "ue_slate_declaration_macro_head",
+    "named": true
+  },
+  {
     "type": "ue_statement_macro",
+    "named": true
+  },
+  {
+    "type": "ue_test_declaration_macro_head",
     "named": true
   },
   {
