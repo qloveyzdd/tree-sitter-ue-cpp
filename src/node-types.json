@@ -308,6 +308,10 @@
         "named": true
       },
       {
+        "type": "ue_text_literal_sequence",
+        "named": true
+      },
+      {
         "type": "unary_expression",
         "named": true
       },
@@ -1198,6 +1202,10 @@
           {
             "type": "argument_list",
             "named": true
+          },
+          {
+            "type": "ue_out_argument_list",
+            "named": true
           }
         ]
       },
@@ -1698,6 +1706,14 @@
           "named": true
         },
         {
+          "type": "ue_macro_invocation",
+          "named": true
+        },
+        {
+          "type": "ue_statement_macro",
+          "named": true
+        },
+        {
           "type": "using_declaration",
           "named": true
         }
@@ -2100,6 +2116,10 @@
         {
           "type": "ue_api_macro",
           "named": true
+        },
+        {
+          "type": "ue_declaration_modifier",
+          "named": true
         }
       ]
     }
@@ -2194,6 +2214,10 @@
         },
         {
           "type": "ue_macro_invocation",
+          "named": true
+        },
+        {
+          "type": "ue_statement_macro",
           "named": true
         },
         {
@@ -2431,6 +2455,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "ue_macro_invocation",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -2579,6 +2613,10 @@
         {
           "type": "ue_api_macro",
           "named": true
+        },
+        {
+          "type": "ue_declaration_modifier",
+          "named": true
         }
       ]
     }
@@ -2645,6 +2683,10 @@
         },
         {
           "type": "type_definition",
+          "named": true
+        },
+        {
+          "type": "ue_exported_macro_invocation",
           "named": true
         },
         {
@@ -2719,6 +2761,10 @@
         "types": [
           {
             "type": "->",
+            "named": false
+          },
+          {
+            "type": "->*",
             "named": false
           },
           {
@@ -3057,6 +3103,10 @@
         {
           "type": "ue_api_macro",
           "named": true
+        },
+        {
+          "type": "ue_declaration_modifier",
+          "named": true
         }
       ]
     }
@@ -3336,6 +3386,10 @@
         {
           "type": "ue_api_macro",
           "named": true
+        },
+        {
+          "type": "ue_declaration_modifier",
+          "named": true
         }
       ]
     }
@@ -3378,6 +3432,10 @@
           {
             "type": "string_literal",
             "named": true
+          },
+          {
+            "type": "ue_text_literal_sequence",
+            "named": true
           }
         ]
       }
@@ -3401,6 +3459,10 @@
           },
           {
             "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "ue_text_literal_sequence",
             "named": true
           }
         ]
@@ -3628,6 +3690,16 @@
         "types": [
           {
             "type": "statement",
+            "named": true
+          }
+        ]
+      },
+      "pragma": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "ue_statement_macro",
             "named": true
           }
         ]
@@ -4276,6 +4348,10 @@
         {
           "type": "ue_api_macro",
           "named": true
+        },
+        {
+          "type": "ue_declaration_modifier",
+          "named": true
         }
       ]
     }
@@ -4360,6 +4436,10 @@
         },
         {
           "type": "ue_api_macro",
+          "named": true
+        },
+        {
+          "type": "ue_declaration_modifier",
           "named": true
         },
         {
@@ -4454,6 +4534,10 @@
         },
         {
           "type": "ue_api_macro",
+          "named": true
+        },
+        {
+          "type": "ue_declaration_modifier",
           "named": true
         },
         {
@@ -4925,7 +5009,15 @@
           "named": true
         },
         {
+          "type": "ue_exported_macro_invocation",
+          "named": true
+        },
+        {
           "type": "ue_macro_invocation",
+          "named": true
+        },
+        {
+          "type": "ue_statement_macro",
           "named": true
         },
         {
@@ -5065,7 +5157,15 @@
           "named": true
         },
         {
+          "type": "ue_exported_macro_invocation",
+          "named": true
+        },
+        {
           "type": "ue_macro_invocation",
+          "named": true
+        },
+        {
+          "type": "ue_statement_macro",
           "named": true
         },
         {
@@ -5176,7 +5276,15 @@
           "named": true
         },
         {
+          "type": "ue_exported_macro_invocation",
+          "named": true
+        },
+        {
           "type": "ue_macro_invocation",
+          "named": true
+        },
+        {
+          "type": "ue_statement_macro",
           "named": true
         },
         {
@@ -5380,7 +5488,15 @@
           "named": true
         },
         {
+          "type": "ue_exported_macro_invocation",
+          "named": true
+        },
+        {
           "type": "ue_macro_invocation",
+          "named": true
+        },
+        {
+          "type": "ue_statement_macro",
           "named": true
         },
         {
@@ -5520,7 +5636,15 @@
           "named": true
         },
         {
+          "type": "ue_exported_macro_invocation",
+          "named": true
+        },
+        {
           "type": "ue_macro_invocation",
+          "named": true
+        },
+        {
+          "type": "ue_statement_macro",
           "named": true
         },
         {
@@ -6037,6 +6161,10 @@
           {
             "type": "string_literal",
             "named": true
+          },
+          {
+            "type": "ue_text_literal_sequence",
+            "named": true
           }
         ]
       }
@@ -6412,6 +6540,10 @@
         {
           "type": "ue_api_macro",
           "named": true
+        },
+        {
+          "type": "ue_declaration_modifier",
+          "named": true
         }
       ]
     }
@@ -6744,6 +6876,10 @@
           "named": true
         },
         {
+          "type": "ue_exported_macro_invocation",
+          "named": true
+        },
+        {
           "type": "ue_gameplay_tag_macro",
           "named": true
         },
@@ -6919,6 +7055,32 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "ue_exported_macro_invocation",
+    "named": true,
+    "fields": {
+      "api": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "ue_api_macro",
+            "named": true
+          }
+        ]
+      },
+      "invocation": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "ue_macro_invocation",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -7231,6 +7393,59 @@
     }
   },
   {
+    "type": "ue_out_argument",
+    "named": true,
+    "fields": {
+      "argument": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      },
+      "modifier": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "ue_parameter_modifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "ue_out_argument_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "compound_statement",
+          "named": true
+        },
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "initializer_list",
+          "named": true
+        },
+        {
+          "type": "ue_out_argument",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "ue_parameter_macro",
     "named": true,
     "fields": {
@@ -7425,6 +7640,10 @@
         {
           "type": "string_literal",
           "named": true
+        },
+        {
+          "type": "ue_text_literal_sequence",
+          "named": true
         }
       ]
     }
@@ -7518,6 +7737,10 @@
         },
         {
           "type": "ue_api_macro",
+          "named": true
+        },
+        {
+          "type": "ue_declaration_modifier",
           "named": true
         },
         {
@@ -8407,6 +8630,10 @@
     "named": true
   },
   {
+    "type": "ue_declaration_modifier",
+    "named": true
+  },
+  {
     "type": "ue_gameplay_tag_macro_head",
     "named": true
   },
@@ -8424,6 +8651,14 @@
   },
   {
     "type": "ue_parameter_modifier",
+    "named": true
+  },
+  {
+    "type": "ue_statement_macro",
+    "named": true
+  },
+  {
+    "type": "ue_text_literal_sequence",
     "named": true
   },
   {
