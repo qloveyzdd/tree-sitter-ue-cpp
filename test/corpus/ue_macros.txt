@@ -287,3 +287,112 @@ class AWorker
                 declarator: (identifier))
               default_value: (null)))
           (type_qualifier))))))
+
+==================
+Slate arguments declaration
+==================
+
+class SWidget
+{
+    SLATE_BEGIN_ARGS(SWidget)
+        : _Opacity(1.0f)
+    {
+        _Enabled = true;
+    }
+    SLATE_ATTRIBUTE(float, Opacity)
+    SLATE_END_ARGS()
+};
+
+---
+
+(translation_unit
+  (class_specifier
+    name: (type_identifier)
+    body: (field_declaration_list
+      (ue_slate_arguments_declaration
+        head: (ue_slate_begin_args_head)
+        arguments: (ue_macro_argument_tail
+          argument: (ue_macro_argument
+            (ue_macro_argument_fragment)))
+        initializers: (field_initializer_list
+          (field_initializer
+            (field_identifier)
+            (argument_list
+              (number_literal))))
+        body: (compound_statement
+          (expression_statement
+            (assignment_expression
+              left: (identifier)
+              right: (true)))))
+      (ue_slate_declaration_macro
+        head: (ue_slate_declaration_macro_head)
+        arguments: (ue_macro_argument_tail
+          argument: (ue_macro_argument
+            (ue_macro_argument_fragment))
+          argument: (ue_macro_argument
+            (ue_macro_argument_fragment))))
+      (ue_slate_declaration_macro
+        head: (ue_slate_declaration_macro_head)
+        arguments: (ue_macro_argument_tail)))))
+
+==================
+Automation test declarations
+==================
+
+#if WITH_AUTOMATION_TESTS
+ACTOR_ANIMATION_TEST(FGeneratedTest, ProjectGenerated)
+{
+    FGeneratedTest() {}
+    void Run() {}
+};
+
+BEGIN_DEFINE_SPEC(FGeneratedSpec, ProjectSpec, EFlags::Client)
+    int32 Value;
+    void Helper() const;
+END_DEFINE_SPEC(FGeneratedSpec)
+#endif
+
+---
+
+(translation_unit
+  (preproc_if
+    condition: (identifier)
+    (ue_test_class_declaration
+      head: (ue_test_class_macro_head)
+      arguments: (argument_list
+        (identifier)
+        (identifier))
+      body: (field_declaration_list
+        (function_definition
+          declarator: (function_declarator
+            declarator: (identifier)
+            parameters: (parameter_list))
+          body: (compound_statement))
+        (function_definition
+          type: (primitive_type)
+          declarator: (function_declarator
+            declarator: (field_identifier)
+            parameters: (parameter_list))
+          body: (compound_statement))))
+    (ue_test_spec_declaration
+      begin: (ue_test_spec_begin
+        head: (ue_test_spec_macro_head)
+        arguments: (argument_list
+          (identifier)
+          (identifier)
+          (qualified_identifier
+            scope: (namespace_identifier)
+            name: (identifier))))
+      member: (field_declaration
+        type: (type_identifier)
+        declarator: (field_identifier))
+      member: (field_declaration
+        type: (primitive_type)
+        declarator: (function_declarator
+          declarator: (field_identifier)
+          parameters: (parameter_list)
+          (type_qualifier)))
+      end: (ue_test_spec_end
+        head: (ue_test_spec_macro_head)
+        arguments: (argument_list
+          (identifier))))))

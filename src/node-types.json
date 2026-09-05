@@ -1718,7 +1718,11 @@
           "named": true
         },
         {
-          "type": "ue_test_declaration_macro",
+          "type": "ue_test_class_declaration",
+          "named": true
+        },
+        {
+          "type": "ue_test_spec_declaration",
           "named": true
         },
         {
@@ -2233,7 +2237,11 @@
           "named": true
         },
         {
-          "type": "ue_test_declaration_macro",
+          "type": "ue_test_class_declaration",
+          "named": true
+        },
+        {
+          "type": "ue_test_spec_declaration",
           "named": true
         },
         {
@@ -2707,6 +2715,10 @@
         },
         {
           "type": "ue_macro_invocation",
+          "named": true
+        },
+        {
+          "type": "ue_slate_arguments_declaration",
           "named": true
         },
         {
@@ -5055,6 +5067,10 @@
           "named": true
         },
         {
+          "type": "ue_slate_arguments_declaration",
+          "named": true
+        },
+        {
           "type": "ue_slate_declaration_macro",
           "named": true
         },
@@ -5063,7 +5079,11 @@
           "named": true
         },
         {
-          "type": "ue_test_declaration_macro",
+          "type": "ue_test_class_declaration",
+          "named": true
+        },
+        {
+          "type": "ue_test_spec_declaration",
           "named": true
         },
         {
@@ -5215,6 +5235,10 @@
           "named": true
         },
         {
+          "type": "ue_slate_arguments_declaration",
+          "named": true
+        },
+        {
           "type": "ue_slate_declaration_macro",
           "named": true
         },
@@ -5223,7 +5247,11 @@
           "named": true
         },
         {
-          "type": "ue_test_declaration_macro",
+          "type": "ue_test_class_declaration",
+          "named": true
+        },
+        {
+          "type": "ue_test_spec_declaration",
           "named": true
         },
         {
@@ -5346,6 +5374,10 @@
           "named": true
         },
         {
+          "type": "ue_slate_arguments_declaration",
+          "named": true
+        },
+        {
           "type": "ue_slate_declaration_macro",
           "named": true
         },
@@ -5354,7 +5386,11 @@
           "named": true
         },
         {
-          "type": "ue_test_declaration_macro",
+          "type": "ue_test_class_declaration",
+          "named": true
+        },
+        {
+          "type": "ue_test_spec_declaration",
           "named": true
         },
         {
@@ -5590,6 +5626,10 @@
           "named": true
         },
         {
+          "type": "ue_slate_arguments_declaration",
+          "named": true
+        },
+        {
           "type": "ue_slate_declaration_macro",
           "named": true
         },
@@ -5598,7 +5638,11 @@
           "named": true
         },
         {
-          "type": "ue_test_declaration_macro",
+          "type": "ue_test_class_declaration",
+          "named": true
+        },
+        {
+          "type": "ue_test_spec_declaration",
           "named": true
         },
         {
@@ -5750,6 +5794,10 @@
           "named": true
         },
         {
+          "type": "ue_slate_arguments_declaration",
+          "named": true
+        },
+        {
           "type": "ue_slate_declaration_macro",
           "named": true
         },
@@ -5758,7 +5806,11 @@
           "named": true
         },
         {
-          "type": "ue_test_declaration_macro",
+          "type": "ue_test_class_declaration",
+          "named": true
+        },
+        {
+          "type": "ue_test_spec_declaration",
           "named": true
         },
         {
@@ -7002,7 +7054,11 @@
           "named": true
         },
         {
-          "type": "ue_test_declaration_macro",
+          "type": "ue_test_class_declaration",
+          "named": true
+        },
+        {
+          "type": "ue_test_spec_declaration",
           "named": true
         },
         {
@@ -7645,6 +7701,52 @@
     }
   },
   {
+    "type": "ue_slate_arguments_declaration",
+    "named": true,
+    "fields": {
+      "arguments": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "ue_macro_argument_tail",
+            "named": true
+          }
+        ]
+      },
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "compound_statement",
+            "named": true
+          }
+        ]
+      },
+      "head": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "ue_slate_begin_args_head",
+            "named": true
+          }
+        ]
+      },
+      "initializers": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "field_initializer_list",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "ue_slate_declaration_macro",
     "named": true,
     "fields": {
@@ -7671,7 +7773,43 @@
     }
   },
   {
-    "type": "ue_test_declaration_macro",
+    "type": "ue_test_class_declaration",
+    "named": true,
+    "fields": {
+      "arguments": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "argument_list",
+            "named": true
+          }
+        ]
+      },
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "field_declaration_list",
+            "named": true
+          }
+        ]
+      },
+      "head": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "ue_test_class_macro_head",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "ue_test_spec_begin",
     "named": true,
     "fields": {
       "arguments": {
@@ -7689,7 +7827,149 @@
         "required": true,
         "types": [
           {
-            "type": "ue_test_declaration_macro_head",
+            "type": "ue_test_spec_macro_head",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "ue_test_spec_declaration",
+    "named": true,
+    "fields": {
+      "begin": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "ue_test_spec_begin",
+            "named": true
+          }
+        ]
+      },
+      "end": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "ue_test_spec_end",
+            "named": true
+          }
+        ]
+      },
+      "member": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": ":",
+            "named": false
+          },
+          {
+            "type": ";",
+            "named": false
+          },
+          {
+            "type": "access_specifier",
+            "named": true
+          },
+          {
+            "type": "alias_declaration",
+            "named": true
+          },
+          {
+            "type": "declaration",
+            "named": true
+          },
+          {
+            "type": "field_declaration",
+            "named": true
+          },
+          {
+            "type": "friend_declaration",
+            "named": true
+          },
+          {
+            "type": "function_definition",
+            "named": true
+          },
+          {
+            "type": "preproc_call",
+            "named": true
+          },
+          {
+            "type": "preproc_def",
+            "named": true
+          },
+          {
+            "type": "preproc_function_def",
+            "named": true
+          },
+          {
+            "type": "preproc_if",
+            "named": true
+          },
+          {
+            "type": "preproc_ifdef",
+            "named": true
+          },
+          {
+            "type": "static_assert_declaration",
+            "named": true
+          },
+          {
+            "type": "template_declaration",
+            "named": true
+          },
+          {
+            "type": "type_definition",
+            "named": true
+          },
+          {
+            "type": "ue_exported_macro_invocation",
+            "named": true
+          },
+          {
+            "type": "ue_macro_invocation",
+            "named": true
+          },
+          {
+            "type": "ue_slate_arguments_declaration",
+            "named": true
+          },
+          {
+            "type": "ue_slate_declaration_macro",
+            "named": true
+          },
+          {
+            "type": "using_declaration",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "ue_test_spec_end",
+    "named": true,
+    "fields": {
+      "arguments": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "argument_list",
+            "named": true
+          }
+        ]
+      },
+      "head": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "ue_test_spec_macro_head",
             "named": true
           }
         ]
@@ -8889,6 +9169,10 @@
     "named": true
   },
   {
+    "type": "ue_slate_begin_args_head",
+    "named": true
+  },
+  {
     "type": "ue_slate_declaration_macro_head",
     "named": true
   },
@@ -8897,7 +9181,11 @@
     "named": true
   },
   {
-    "type": "ue_test_declaration_macro_head",
+    "type": "ue_test_class_macro_head",
+    "named": true
+  },
+  {
+    "type": "ue_test_spec_macro_head",
     "named": true
   },
   {

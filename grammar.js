@@ -81,13 +81,15 @@ module.exports = grammar(CPP, {
     _top_level_item: ($, original) => choice(
       original,
       $.ue_gameplay_tag_macro,
-      $.ue_test_declaration_macro,
+      $.ue_test_class_declaration,
+      $.ue_test_spec_declaration,
       $.ue_exported_macro_invocation,
       $.ue_macro_invocation,
     ),
 
     _field_declaration_list_item: ($, original) => choice(
       original,
+      $.ue_slate_arguments_declaration,
       $.ue_slate_declaration_macro,
       $.ue_exported_macro_invocation,
       $.ue_macro_invocation,
@@ -97,7 +99,8 @@ module.exports = grammar(CPP, {
       original,
       $.ue_statement_macro,
       $.ue_runtime_statement_macro,
-      $.ue_test_declaration_macro,
+      $.ue_test_class_declaration,
+      $.ue_test_spec_declaration,
       $.ue_macro_invocation,
     ),
 
@@ -255,21 +258,51 @@ module.exports = grammar(CPP, {
       /(?:check(?:f|Slow|fSlow)?|DOREPLIFETIME(?:_[A-Za-z0-9_]+)*)/
     )),
 
-    // UE automation helpers expand to class/spec declaration boundaries, so
-    // their invocations are complete top-level items without source semicolons.
-    ue_test_declaration_macro: $ => prec.right(3, seq(
-      field('head', $.ue_test_declaration_macro_head),
+    // UE automation helpers expand to complete class declarations. Keep the
+    // generated member body attached to the macro invocation.
+    ue_test_class_declaration: $ => prec.right(4, seq(
+      field('head', $.ue_test_class_macro_head),
       field('arguments', $.argument_list),
+      field('body', $.field_declaration_list),
       optional(';'),
     )),
 
-    ue_test_declaration_macro_head: _ => token(prec(3,
-      /(?:ACTOR_ANIMATION_(?:NETWORK_)?TEST(?:_WITH_FLAGS)?|TEST_CLASS_WITH_FLAGS|BEGIN_DEFINE_SPEC|END_DEFINE_SPEC)/
+    ue_test_class_macro_head: _ => token(prec(3,
+      /(?:ACTOR_ANIMATION_(?:NETWORK_)?TEST(?:_WITH_FLAGS)?|TEST_CLASS_WITH_FLAGS)/
     )),
 
+    // BEGIN_DEFINE_SPEC/END_DEFINE_SPEC are the opening and closing tokens of
+    // one generated declaration, despite having no source braces.
+    ue_test_spec_declaration: $ => prec.right(4, seq(
+      field('begin', $.ue_test_spec_begin),
+      repeat(field('member', $._field_declaration_list_item)),
+      field('end', $.ue_test_spec_end),
+      optional(';'),
+    )),
+
+    ue_test_spec_begin: $ => seq(
+      field('head', alias('BEGIN_DEFINE_SPEC', $.ue_test_spec_macro_head)),
+      field('arguments', $.argument_list),
+    ),
+
+    ue_test_spec_end: $ => seq(
+      field('head', alias('END_DEFINE_SPEC', $.ue_test_spec_macro_head)),
+      field('arguments', $.argument_list),
+    ),
+
+    // Slate's begin macro behaves like a generated FArguments constructor:
+    // it may have an initializer list and always owns a compound body.
+    ue_slate_arguments_declaration: $ => prec.right(4, seq(
+      field('head', $.ue_slate_begin_args_head),
+      field('arguments', $.ue_macro_argument_tail),
+      optional(field('initializers', $.field_initializer_list)),
+      field('body', $.compound_statement),
+    )),
+
+    ue_slate_begin_args_head: _ => token(prec(3, /SLATE_BEGIN_ARGS\s*\(/)),
+
     // Slate's argument DSL emits class members and deliberately omits source
-    // semicolons. SLATE_BEGIN_ARGS is excluded because it has constructor-like
-    // initializer/body syntax that the base C++ grammar already models.
+    // semicolons. The begin macro is modeled separately with its owned body.
     ue_slate_declaration_macro: $ => prec.right(3, seq(
       field('head', $.ue_slate_declaration_macro_head),
       field('arguments', $.ue_macro_argument_tail),
